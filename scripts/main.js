@@ -15,8 +15,19 @@ document.addEventListener("DOMContentLoaded", function () {
   menuToggle.addEventListener("click", function () {
     mainNav.classList.toggle("open");
     menuToggle.classList.toggle("open");
+    document.body.classList.toggle("nav-open");
   });
 
+  // Close mobile menu when a nav link is clicked
+  document.querySelectorAll("#main-nav a").forEach((a) =>
+    a.addEventListener("click", () => {
+      if (mainNav.classList.contains("open")) {
+        mainNav.classList.remove("open");
+        menuToggle.classList.remove("open");
+        document.body.classList.remove("nav-open");
+      }
+    }),
+  );
   // Smooth anchor scrolling
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener("click", function (e) {
